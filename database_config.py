@@ -37,7 +37,7 @@ class EmployeeDataBase():
     def continue_choice(self, menu):
         """ A simple question to continue the crud or program """
         option = input('\n¿Desea continuar? (si/no): ')
-        if option == 'si' and 'SI':
+        if option in ['si', 'SI']:
             print(menu)
         else:
             print('\n*** GRACIAS POR USAR ESTE PROGRAMA | Twitter: @jamesnoria ***\n')
@@ -79,13 +79,6 @@ class EmployeeDataBase():
         df.index += 1
         print('\n', df)
 
-        # csv_option = input('¿Desearía generar un reporte en formato .csv de esta base de datos? (si/no): ')
-        # if csv_option == 'si' and 'SI':
-        #     filename = time.strftime('%d_%m_%Y')
-        #     file_format = 'employees_' + filename + '.csv'
-        #     df.to_csv(f'./csv_reports/{file_format}')
-        #     print(f'Un archivo llamado: "{file_format}" ha sido generado dentro de la carpeta "csv_reports"')
-
     def update_employee(self):
         """ Alter an employee info """
         while True:
@@ -106,7 +99,6 @@ class EmployeeDataBase():
 
             if df.empty:
                 print('\nResultados no encontrados. Introduzcalos nuevamente')
-                continue
             else:
                 print('\n', df)
                 break
@@ -185,12 +177,11 @@ class EmployeeDataBase():
 
             if df.empty:
                 print('\nResultados no encontrados. Introduzcalos nuevamente')
-                continue
             else:
                 print(
                     f'\n¿Esta seguro de eliminar a {user_name_mod.title()} {last_name_mod.title()}?')
                 delete_option = input('[si/no]: ')
-                if delete_option == 'si' and 'SI':
+                if delete_option in ['si', 'SI']:
                     self.sql.execute(f"""
                     DELETE FROM employees
                     WHERE first_name = '{user_name_mod.title()}' AND last_name = '{last_name_mod.title()}';
